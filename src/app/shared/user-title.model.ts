@@ -1,4 +1,4 @@
-export class UserTitle{
+export interface IUserTitle{
     Id: number;
     Description: string;
 }

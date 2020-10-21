@@ -3,9 +3,9 @@ import { NgForm } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { UserDetailService } from '../shared/user-detail.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserDetail } from 'src/app/shared/user-detail.model';
-import { UserTitle } from '../shared/user-title.model';
-import { UserType } from '../shared/user-type.model';
+import { IUserTitle } from '../shared/user-title.model';
+import { IUserType } from '../shared/user-type.model';
+import { IUserDetail } from '../shared/user-detail.model';
 
 @Component({
   selector: 'app-user-detail-form',
@@ -17,13 +17,13 @@ export class UserDetailsComponent implements OnInit {
   form: NgForm;
   buttonText : string;
   userId: number;
-  userModel: UserDetail;
-  users: UserDetail[];
-  userTitleList: UserTitle[];
-  userTypeList: UserType[];
+  userModel: IUserDetail | undefined;;
+  users: IUserDetail[];
+  userTitleList: IUserTitle[];
+  userTypeList: IUserType[];
   pageTitle= 'User Details';
 
-  userDetail: UserDetail;
+  userDetail: IUserDetail;
  
   loading: boolean = false;
   errorMessage;
@@ -72,7 +72,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    if(this.userDetailService.userModel.Id == 0){
+    if(this.userDetailService.userDetail.Id == 0){
       this.registerUser(form);
     }else{
       this.updateUserDetails(form);
@@ -81,7 +81,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   resetForm(){
-      this.userDetailService.userModel = {
+      this.userDetailService.userDetail = {
         Id: 0,
         Name: '',
         Surname: '',
@@ -107,7 +107,7 @@ export class UserDetailsComponent implements OnInit {
       res => {
         this.resetForm();
         //this.toastr.info('Submitted successfully', 'Payment Detail Register');
-        this.userDetailService.getUserList();
+        this.userDetailService.getUserList();           
       },
       err => {
         console.log(err);

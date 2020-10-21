@@ -34,7 +34,7 @@ import { HomeComponent } from './home.component';
     MatNativeDateModule,
     RouterModule.forRoot([
       { path: 'users',  component: UsersComponent },
-      { path: 'users/:id', component: UserDetailsComponent},
+      //{ path: 'users/:id', component: UserDetailsComponent},
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full'}

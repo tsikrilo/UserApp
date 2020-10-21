@@ -1,4 +1,4 @@
-export class UserDetail {
+export interface IUserDetail {
     Id : number;
     Name: string;
     Surname: string;

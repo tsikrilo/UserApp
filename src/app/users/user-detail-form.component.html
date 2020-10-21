@@ -14,13 +14,13 @@
                         <input type="hidden" name="Id" [value]="userId">   
                         <div class="form-group">
                             <label>Name</label>
-                            <input name="Name" #Name="ngModel" [(ngModel)]="userDetailService.userModel.Name"
+                            <input name="Name" #Name="ngModel" [(ngModel)]="userDetailService.userDetail.Name"
                                 class="form-control form-control-lg" placeholder="Name" required
                                 [class.invalid]="Name.invalid &#038;&#038; Name.touched">
                         </div>
                         <div class="form-group">
                             <label>Surname</label>
-                            <input name="Surname" #Surname="ngModel" [(ngModel)]="userDetailService.userModel.Surname"
+                            <input name="Surname" #Surname="ngModel" [(ngModel)]="userDetailService.userDetail.Surname"
                                 class="form-control form-control-lg" placeholder="Surname" required 
                                 [class.invalid]="Surname.invalid &#038;&#038; Surname.touched">
                         </div>
@@ -30,7 +30,7 @@
                             <mat-form-field>
                                 <input matInput name="BirthDate" #BirthDate="ngModel" matInput [matDatepicker]="picker" 
                                 placeholder="Select a date" 
-                                [(ngModel)]="userDetailService.userModel.BirthDate" 
+                                [(ngModel)]="userDetailService.userDetail.BirthDate" 
                                 required>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group"> 
                             <label for="UserTitleId">User Title</label>
-                            <select class="form-control" [(ngModel)]="userDetailService.userModel.UserTitleId" 
+                            <select class="form-control" [(ngModel)]="userDetailService.userDetail.UserTitleId" 
                             name="UserTitleId" id="UserTitleId">        
                                 <option *ngFor="let title of userTitleList" [value]="title.Id">
                                 {{title.Description}}
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group"> 
                             <label for="UserTypeId">User Type</label>
-                            <select class="form-control" [(ngModel)]="userDetailService.userModel.UserTypeId" 
+                            <select class="form-control" [(ngModel)]="userDetailService.userDetail.UserTypeId" 
                             name="UserTypeId" id="UserTypeId">
                                 <option *ngFor="let type of userTypeList" [value]="type.Id">
                                     {{type.Description}}
@@ -56,28 +56,32 @@
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
-                            <input name="EmailAddress" #EmailAddress="ngModel" [(ngModel)]="userDetailService.userModel.EmailAddress"
+                            <input name="EmailAddress" #EmailAddress="ngModel" [(ngModel)]="userDetailService.userDetail.EmailAddress"
                                 class="form-control form-control-lg" placeholder="email address" required maxlength="50"
                                 [class.invalid]="EmailAddress.invalid &#038;&#038; EmailAddress.touched">
                         </div>
                         <div class="form-group"> 
                             <label for="Active">Active</label>
                             <input type="checkbox" #Active="ngModel" 
-                            [(ngModel)]="userDetailService.userModel.IsActive"
+                            [(ngModel)]="userDetailService.userDetail.IsActive"
                             style="margin-left:5%"
                             name="Active"
                             id="Active"
                             />
                         </div>
-                        <!--<input type="hidden" name="IsActive" [value]="userDetailService.userModel.IsActive">-->
+                        <!--<input type="hidden" name="IsActive" [value]="userDetailService.userDetail.IsActive">-->
                         <div class="form-group">
                             <div class="col-md-12">
                                 <button class="btn btn-info btn-primary" style="margin-right:10%" 
                                         (click)='onBack()'
                                         >
                                         <i class='fa fa-chevron-left'>Back</i></button>
-                                <button class="btn btn-info btn-primary" style="margin-right:10%" type="submit" [disabled]="form.invalid">Insert</button>
-                                <button class="btn btn-info btn-primary" type="button" (click)="resetForm(form)">Clear Form</button>
+                                <button class="btn btn-info btn-primary" style="margin-right:10%" type="submit" *ngIf="userDetailService.userDetail.Id > 0" 
+                                [disabled]="form.invalid">Update</button>
+
+                                <button class="btn btn-info btn-primary" style="margin-right:10%" type="submit" *ngIf="userDetailService.userDetail.Id == 0" 
+                                    [disabled]="form.invalid">Insert</button>
+                                <button class="btn btn-info btn-primary" type="button" (click)="resetForm()">Clear Form</button>
                             </div>
                         </div>
                     </form>

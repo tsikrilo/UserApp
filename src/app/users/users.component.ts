@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetailService } from '../shared/user-detail.service';
 import { FilterPipe } from '../pipes/filter.pipe';
-import { UserDetail } from '../shared/user-detail.model';
-import { UserTitle } from '../shared/user-title.model';
-import { UserType } from '../shared/user-type.model';
+import { IUserDetail } from '../shared/user-detail.model';
+import { IUserTitle } from '../shared/user-title.model';
+import { IUserType } from '../shared/user-type.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -21,10 +21,10 @@ export class UsersComponent implements OnInit {
   filterPipe: FilterPipe;
   searchText: string;
   pageTitle= "User List";
-  users: UserDetail[];
+  users: IUserDetail[];
   errorMessage: string;
-  userTitleList: UserTitle[];
-  userTypeList: UserType[];
+  userTitleList: IUserTitle[];
+  userTypeList: IUserType[];
 
   ngOnInit(): void {
     this.userDetailService.getUserTitleList().subscribe({
@@ -51,8 +51,8 @@ export class UsersComponent implements OnInit {
     });
   }
   viewUser(selectedRecord:any) {
-    this.userDetailService.userModel = Object.assign({}, selectedRecord);
-    this.userDetailService.userModel.BirthDate = selectedRecord.Birthdate;
+    this.userDetailService.userDetail = Object.assign({}, selectedRecord);
+    this.userDetailService.userDetail.BirthDate = selectedRecord.Birthdate;
   }
   onDelete(Id:number) {
     if (confirm('Are you sure to delete this user?')) {
@@ -67,4 +67,5 @@ export class UsersComponent implements OnInit {
   createNewUser(){
     this.router.navigateByUrl('/users/0');
   }
+
 }

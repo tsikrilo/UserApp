@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserDetail } from '../shared/user-detail.model';
+import { IUserDetail } from '../shared/user-detail.model';
 
 @Pipe({name: 'fullnameFilter'})
 export class FilterPipe implements PipeTransform{
 
-    transform(userDetails: UserDetail[], searchText: string): UserDetail[]
+    transform(userDetails: IUserDetail[], searchText: string): IUserDetail[]
     {
         if(!userDetails){
             return [];
@@ -14,7 +14,7 @@ export class FilterPipe implements PipeTransform{
         }
         searchText = searchText ? searchText.toLocaleLowerCase() : null;
 
-        return searchText ? userDetails.filter((userDetail: UserDetail) =>
+        return searchText ? userDetails.filter((userDetail: IUserDetail) =>
             userDetail.Name.toLocaleLowerCase().indexOf(searchText) !== -1 ||
             userDetail.Surname.toLocaleLowerCase().indexOf(searchText) !== -1) : userDetails;
     }
