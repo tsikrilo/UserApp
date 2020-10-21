@@ -1,0 +1,89 @@
+<!--<div class="card">
+    <div class="card-header">
+      {{pageTitle}}
+    </div>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="text-left">
+            <div class="row">
+                <div class="col-md-5">
+                    <app-user-detail-form></app-user-detail-form>
+                </div>
+                <div class="col-md-5">-->
+                    <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                        <input type="hidden" name="Id" [value]="userId">   
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input name="Name" #Name="ngModel" [(ngModel)]="userDetailService.userModel.Name"
+                                class="form-control form-control-lg" placeholder="Name" required
+                                [class.invalid]="Name.invalid &#038;&#038; Name.touched">
+                        </div>
+                        <div class="form-group">
+                            <label>Surname</label>
+                            <input name="Surname" #Surname="ngModel" [(ngModel)]="userDetailService.userModel.Surname"
+                                class="form-control form-control-lg" placeholder="Surname" required 
+                                [class.invalid]="Surname.invalid &#038;&#038; Surname.touched">
+                        </div>
+                        <div class="form-group"> 
+                            <label>Birthdate</label>
+                            <br>
+                            <mat-form-field>
+                                <input matInput name="BirthDate" #BirthDate="ngModel" matInput [matDatepicker]="picker" 
+                                placeholder="Select a date" 
+                                [(ngModel)]="userDetailService.userModel.BirthDate" 
+                                required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="UserTitleId">User Title</label>
+                            <select class="form-control" [(ngModel)]="userDetailService.userModel.UserTitleId" 
+                            name="UserTitleId" id="UserTitleId">        
+                                <option *ngFor="let title of userTitleList" [value]="title.Id">
+                                {{title.Description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="UserTypeId">User Type</label>
+                            <select class="form-control" [(ngModel)]="userDetailService.userModel.UserTypeId" 
+                            name="UserTypeId" id="UserTypeId">
+                                <option *ngFor="let type of userTypeList" [value]="type.Id">
+                                    {{type.Description}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input name="EmailAddress" #EmailAddress="ngModel" [(ngModel)]="userDetailService.userModel.EmailAddress"
+                                class="form-control form-control-lg" placeholder="email address" required maxlength="50"
+                                [class.invalid]="EmailAddress.invalid &#038;&#038; EmailAddress.touched">
+                        </div>
+                        <div class="form-group"> 
+                            <label for="Active">Active</label>
+                            <input type="checkbox" #Active="ngModel" 
+                            [(ngModel)]="userDetailService.userModel.IsActive"
+                            style="margin-left:5%"
+                            name="Active"
+                            id="Active"
+                            />
+                        </div>
+                        <!--<input type="hidden" name="IsActive" [value]="userDetailService.userModel.IsActive">-->
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button class="btn btn-info btn-primary" style="margin-right:10%" 
+                                        (click)='onBack()'
+                                        >
+                                        <i class='fa fa-chevron-left'>Back</i></button>
+                                <button class="btn btn-info btn-primary" style="margin-right:10%" type="submit" [disabled]="form.invalid">Insert</button>
+                                <button class="btn btn-info btn-primary" type="button" (click)="resetForm(form)">Clear Form</button>
+                            </div>
+                        </div>
+                    </form>
+                <!--</div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>-->

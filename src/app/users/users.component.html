@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-header">
+      {{pageTitle}}
+    </div>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="text-left">
+            
+            <div class="row">
+                <div class="col-md-5">
+                    <app-user-detail-form></app-user-detail-form>
+                </div>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="search-text" 
+                    aria-describedby="search-text" [(ngModel)]="searchText" 
+                    placeholder="Enter full name of user" autofocus>
+                    <br>
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Action</th>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <!--<th>Birthdate</th>-->
+                                <!--<th>Title</th>
+                                <th>Type</th>-->
+                                <th>Active</th>
+                            </tr>
+                        </thead>
+                        <tr *ngFor="let ul of users | fullnameFilter: searchText">
+                            <td (click)="viewUser(ul)">ViewUser
+                                <!--<a [routerLink]="['/users', ul.Id]">View user</a>-->
+                            </td>
+                            <td>{{ul.Name}}</td>
+                            <td>{{ul.Surname}}</td>
+                            <!--<td>{{ul.Birthdate | date: 'MM/dd/yyyy'}}</td>-->
+                            <!--<td><select class="form-control" [(ngModel)]="ul.UserTitleId" 
+                            name="UserTitleId" id="UserTitleId">        
+                                <option *ngFor="let title of userTitleList" disabled [value]="title.Id">
+                                {{title.Description}}
+                                </option>
+                            </select>
+                            </td>
+                            <td>
+                                <select class="form-control" [(ngModel)]="ul.UserTypeId" 
+                                name="UserTypeId" id="UserTypeId">        
+                                    <option *ngFor="let type of userTypeList" disabled [value]="type.Id">
+                                    {{type.Description}}
+                                    </option>
+                                </select>
+                            </td>-->
+                            <td *ngIf="ul.IsActive">
+                                <i class="fas fa-check text-success"></i>
+                            </td>
+                            <td *ngIf="!ul.IsActive">
+                                <i class="fas fa-times text-danger"></i>
+                           </td>
+                        </tr>
+                    </table>  
+                </div>
+               <!-- <div class="form-group">
+                    <button class="btn btn-info btn-primary"  type="button" (click)="createNewUser()">Create new user</button>
+                </div>-->                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
