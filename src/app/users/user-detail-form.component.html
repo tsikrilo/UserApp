@@ -72,10 +72,6 @@
                         <!--<input type="hidden" name="IsActive" [value]="userDetailService.userDetail.IsActive">-->
                         <div class="form-group">
                             <div class="col-md-12">
-                                <button class="btn btn-info btn-primary" style="margin-right:10%" 
-                                        (click)='onBack()'
-                                        >
-                                        <i class='fa fa-chevron-left'>Back</i></button>
                                 <button class="btn btn-info btn-primary" style="margin-right:10%" type="submit" *ngIf="userDetailService.userDetail.Id > 0" 
                                 [disabled]="form.invalid">Update</button>
 

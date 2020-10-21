@@ -30,7 +30,8 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(public userDetailService: UserDetailService, 
               private router: Router,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute,
+              private notifyService : NotificationService) { 
   }
 
   ngOnInit(): void { 
@@ -96,7 +97,16 @@ export class UserDetailsComponent implements OnInit {
   registerUser(form: NgForm){
     this.userDetailService.postUserDetail().subscribe(
       res => {
-        this.userDetailService.getUserList();
+        this.notifyService.showSuccess("User created successfully !!","CREATE USER");
+        //this.userDetailService.getUserList();
+        setTimeout(() => 
+        {
+          this.router.navigate(['/users'])
+          .then(() => {
+            window.location.reload();
+          }); 
+        },
+        2000); 
       },
       err => {console.log(err);}
     )      
@@ -105,18 +115,23 @@ export class UserDetailsComponent implements OnInit {
   updateUserDetails(form: NgForm){
     this.userDetailService.putUserDetail().subscribe(
       res => {
-        this.resetForm();
-        //this.toastr.info('Submitted successfully', 'Payment Detail Register');
-        this.userDetailService.getUserList();           
+        this.resetForm();        
+        this.notifyService.showSuccess("User data updated successfully !!","UPDATE USER");
+        //this.userDetailService.getUserList();      
+        setTimeout(() => 
+        {
+          this.router.navigate(['/users'])
+          .then(() => {
+            window.location.reload();
+          }); 
+        },
+        2000);     
       },
       err => {
+        this.notifyService.showError("Something went wrong", "UPDATE")
         console.log(err);
       }
     )
+        
   }
-
-  onBack(): void{
-    this.router.navigate(['/users']);   
-  }
-
 }
