@@ -21,46 +21,27 @@
                                 <th>Action</th>
                                 <th>Name</th>
                                 <th>Surname</th>
-                                <!--<th>Birthdate</th>-->
-                                <!--<th>Title</th>
-                                <th>Type</th>-->
                                 <th>Active</th>
                             </tr>
                         </thead>
                         <tr *ngFor="let ul of users | fullnameFilter: searchText">
-                            <td (click)="viewUser(ul)">ViewUser
+                            <td (click)="viewUser(ul)" style="cursor:pointer;color:red">View details
                                 <!--<a [routerLink]="['/users', ul.Id]">View user</a>-->
                             </td>
                             <td>{{ul.Name}}</td>
-                            <td>{{ul.Surname}}</td>
-                            <!--<td>{{ul.Birthdate | date: 'MM/dd/yyyy'}}</td>-->
-                            <!--<td><select class="form-control" [(ngModel)]="ul.UserTitleId" 
-                            name="UserTitleId" id="UserTitleId">        
-                                <option *ngFor="let title of userTitleList" disabled [value]="title.Id">
-                                {{title.Description}}
-                                </option>
-                            </select>
-                            </td>
-                            <td>
-                                <select class="form-control" [(ngModel)]="ul.UserTypeId" 
-                                name="UserTypeId" id="UserTypeId">        
-                                    <option *ngFor="let type of userTypeList" disabled [value]="type.Id">
-                                    {{type.Description}}
-                                    </option>
-                                </select>
-                            </td>-->
+                            <td>{{ul.Surname}}</td>                                                     
                             <td *ngIf="ul.IsActive">
                                 <i class="fas fa-check text-success"></i>
                             </td>
                             <td *ngIf="!ul.IsActive">
                                 <i class="fas fa-times text-danger"></i>
-                           </td>
+                            </td>
+                            <td *ngIf="ul.IsActive">
+                                <button (click)="onDelete(ul.Id)"><i class="fas fa-trash text-danger"></i></button>
+                            </td>
                         </tr>
                     </table>  
-                </div>
-               <!-- <div class="form-group">
-                    <button class="btn btn-info btn-primary"  type="button" (click)="createNewUser()">Create new user</button>
-                </div>-->                
+                </div>              
             </div>
         </div>
       </div>

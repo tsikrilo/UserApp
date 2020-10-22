@@ -5,9 +5,10 @@ import { IUserDetail } from '../shared/user-detail.model';
 import { IUserTitle } from '../shared/user-title.model';
 import { IUserType } from '../shared/user-type.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '../shared/notification.service';
 
 @Component({
-  selector: 'app-user-details',
+  selector: 'app-user',
   templateUrl: './users.component.html',
   styles: []
 })
@@ -16,7 +17,8 @@ export class UsersComponent implements OnInit {
 
   constructor(public userDetailService:UserDetailService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private notifyService : NotificationService) { }
   
   filterPipe: FilterPipe;
   searchText: string;
@@ -58,7 +60,15 @@ export class UsersComponent implements OnInit {
     if (confirm('Are you sure to delete this user?')) {
       this.userDetailService.deleteUserDetail(Id)
         .subscribe(res => {
-          this.userDetailService.getUserList();
+          this.notifyService.showSuccess("User deleted successfully !!","DELETE USER");        
+          setTimeout(() => 
+          {
+            this.router.navigate(['/users'])
+            .then(() => {
+              window.location.reload();
+            }); 
+          },
+          2000); 
         },
         error => { console.log(error); })
     }

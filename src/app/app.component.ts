@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
         <ul class="navbar-nav">
           <li style="padding-left:5%;padding-top:4%"><a [routerLink]="['/home']">Home</a></li>
           <li style="padding-left:5%;padding-top:4%"><a [routerLink]="['/users']">Users</a></li>
-          <li style="padding-left:5%;padding-top:4%"><a>Map</a></li>
+          <li style="padding-left:5%;padding-top:4%"><a [routerLink]="['/map']">Map</a></li>
         </ul>
       </div>
     </nav>
@@ -24,6 +24,6 @@ import { Component } from '@angular/core';
   ]
 })
 export class AppComponent {
-  title = '';
-
+  title = ''; 
+   
 }
