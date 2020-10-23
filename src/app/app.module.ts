@@ -15,8 +15,8 @@ import { UserDetailsComponent } from './users/user-detail-form.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HomeComponent } from './home.component';
 import { ToastrModule } from 'ngx-toastr';
-import { MapComponent } from './map/map.component';
-import { DashboardComponent } from './map/dashboard.component';
+import { MapViewComponent } from './map/mapView.component';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +25,7 @@ import { DashboardComponent } from './map/dashboard.component';
     UserDetailsComponent,
     FilterPipe,
     HomeComponent,
-    MapComponent,
-    DashboardComponent
+    MapViewComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +39,7 @@ import { DashboardComponent } from './map/dashboard.component';
     RouterModule.forRoot([
       { path: 'users',  component: UsersComponent },
       //{ path: 'users/:id', component: UserDetailsComponent},
-      { path: 'map', component: DashboardComponent},
+      { path: 'map', component: MapViewComponent},
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full'}

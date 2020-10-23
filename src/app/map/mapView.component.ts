@@ -13,10 +13,10 @@ import esri = __esri;
 
 @Component({
   selector: "app-esri-map",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.scss"]
+  templateUrl: "./mapView.component.html",
+  styleUrls: ["./mapView.component.scss"]
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class MapViewComponent implements OnInit, OnDestroy {
 
   @ViewChild("mapView", { static: true }) private mapViewElement: ElementRef;
 
