@@ -4,9 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IUserTitle } from './user-title.model';
 import { IUserType } from './user-type.model';
 import { Observable, throwError } from 'rxjs';
-import { ObservableInput } from 'rxjs/internal/types';
-import { first, tap } from 'rxjs/operators';
-import { map, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable({
