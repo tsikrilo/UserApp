@@ -1,13 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Input,
-  Output,
-  EventEmitter,
-  OnDestroy
-} from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { loadModules } from "esri-loader";
 import esri = __esri;
 
@@ -48,11 +39,11 @@ export class MapViewComponent implements OnInit, OnDestroy {
     } catch (error) {
       console.log("Error initialing esri map: ", error);
     }
-  }  
+  }
 
   ngOnDestroy() {
     if (this._esriMapView) {
       this._esriMapView.container = null;
     }
-  }   
+  }
 }

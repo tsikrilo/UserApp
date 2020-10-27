@@ -3,15 +3,15 @@ import { IUserDetail } from './user-detail.model';
 import { HttpClient } from '@angular/common/http';
 import { IUserTitle } from './user-title.model';
 import { IUserType } from './user-type.model';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailService {
 
+  // TODO cleanup unused properties
   userDetail: IUserDetail;
   userTitleModel: IUserTitle;
   userTypeModel: IUserType;
@@ -19,20 +19,22 @@ export class UserDetailService {
   user: IUserDetail;
   userTypesList: IUserType[];
   userTitlesList: IUserTitle[];
-  
 
   constructor(private http: HttpClient) {}
 
-  postUserDetail(){
+  // TODO always define return type of methods
+  postUserDetail(): Observable<IUserDetail> {
     this.userDetail.UserTitleId = +this.userDetail.UserTitleId;
     this.userDetail.UserTypeId = +this.userDetail.UserTypeId;
-    return this.http.post(`https://localhost:44384/api/Users`, this.userDetail);
+
+    // TODO base url should be an environment variable environment.baseUrl
+    return this.http.post<IUserDetail>(`https://localhost:44384/api/Users`, this.userDetail);
   }
 
   putUserDetail(){
     this.userDetail.UserTitleId = +this.userDetail.UserTitleId;
     this.userDetail.UserTypeId = +this.userDetail.UserTypeId;
-    return this.http.put(`https://localhost:44384/api/Users/${this.userDetail.Id}`, this.userDetail);    
+    return this.http.put(`https://localhost:44384/api/Users/${this.userDetail.Id}`, this.userDetail);
   }
 
   deleteUserDetail(userId: number){
@@ -40,12 +42,14 @@ export class UserDetailService {
   }
 
   getUserList(): Observable<IUserDetail[] | undefined>{
+    // TODO only handle errors where called
     return this.http.get<IUserDetail[]>(`https://localhost:44384/api/Users`)
     .pipe(
       catchError(this.handleError)
     );
   }
 
+  // TODO wrong error
   handleError(handleError: any): import("rxjs").OperatorFunction<IUserDetail[], any> {
     throw new Error('Method not implemented.');
   }
@@ -54,7 +58,7 @@ export class UserDetailService {
       return this.http.get<IUserDetail>(`https://localhost:44384/api/Users/${userId}`)
       .pipe(
         catchError(this.handleError)
-      );      
+      );
   }
 
   getUserTitleList(): Observable<IUserTitle[] | undefined>{
